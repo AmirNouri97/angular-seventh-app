@@ -16,6 +16,7 @@ p {
   gap: 0.5rem;
   padding: 0 0.5rem;
   border-bottom: 1px solid #76737a;
+  border-left: 1px solid #76737a;
 }
 
 #chart div {
