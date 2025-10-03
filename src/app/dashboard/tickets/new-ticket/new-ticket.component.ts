@@ -17,10 +17,10 @@ export class NewTicketComponent {
     title: string,
     ticketText: string
   ) {
-    console.log('submitted');
     // const enteredTitle = titleElement.value;
     // const enteredRequest = textAreaElement.value;
     // throw new Error('Method not implemented.');
+    console.log('submitted');
     console.log(title);
     console.log(ticketText);
   }
