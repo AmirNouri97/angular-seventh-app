@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -22,7 +22,7 @@ export class ServerStatusComponent implements OnInit, OnChanges, AfterViewInit {
   // @Input() test?: number;
   // private interval?: NodeJS.Timeout;
   // private interval?: ReturnType<typeof setInterval>;
-  private destroyRef = Inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
   constructor() {}
   ngOnInit() {
     console.log('run ng on init');
@@ -42,7 +42,7 @@ export class ServerStatusComponent implements OnInit, OnChanges, AfterViewInit {
       }
     }, 4000);
 
-    this.destroyRef.OnDestroy(() => {
+    this.destroyRef.onDestroy(() => {
       clearInterval(interval);
     });
   }
