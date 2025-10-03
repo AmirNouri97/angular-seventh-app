@@ -5,8 +5,22 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './server-status.component.html',
-  styleUrl: './server-status.component.css'
+  styleUrl: './server-status.component.css',
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  constructor() {
+    setInterval(() => {
+      const rnd = +Math.random().toFixed(2); // 0-0.999
+      console.log(rnd);
+
+      if (rnd < 0.5) {
+        this.currentStatus = 'online';
+      } else if (rnd < 0.9) {
+        this.currentStatus = 'offline';
+      } else {
+        this.currentStatus = 'unknown';
+      }
+    }, 4000);
+  }
 }
