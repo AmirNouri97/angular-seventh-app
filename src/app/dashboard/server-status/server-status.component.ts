@@ -1,6 +1,8 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
+  Inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -15,18 +17,18 @@ import {
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
 })
-export class ServerStatusComponent
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
-{
+export class ServerStatusComponent implements OnInit, OnChanges, AfterViewInit {
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
   // @Input() test?: number;
   // private interval?: NodeJS.Timeout;
-  private interval?: ReturnType<typeof setInterval>;
+  // private interval?: ReturnType<typeof setInterval>;
+  private destroyRef = Inject(DestroyRef);
   constructor() {}
   ngOnInit() {
     console.log('run ng on init');
 
-    this.interval = setInterval(() => {
+    // this.interval = setInterval(() => {
+    const interval = setInterval(() => {
       const rnd = +Math.random().toFixed(2); // 0-0.999
       // this.test = rnd;
       console.log(rnd);
@@ -39,16 +41,20 @@ export class ServerStatusComponent
         this.currentStatus = 'unknown';
       }
     }, 4000);
+
+    this.destroyRef.OnDestroy(() => {
+      clearInterval(interval);
+    });
   }
   ngAfterViewInit(): void {
     console.log('run ng After View Init!');
-    console.log(this.interval);
+    // console.log(this.interval);
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log('run ng On Changes', changes);
   }
-  ngOnDestroy() {
-    clearInterval(this.interval);
-    clearTimeout(this.interval);
-  }
+  // ngOnDestroy() {
+  //   clearInterval(this.interval);
+  //   clearTimeout(this.interval);
+  // }
 }
