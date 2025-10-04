@@ -31,7 +31,7 @@ export class ServerStatusComponent implements OnInit, OnChanges, AfterViewInit {
     const interval = setInterval(() => {
       const rnd = +Math.random().toFixed(2); // 0-0.999
       // this.test = rnd;
-      console.log(rnd);
+      // console.log(rnd);
 
       if (rnd < 0.5) {
         this.currentStatus = 'online';

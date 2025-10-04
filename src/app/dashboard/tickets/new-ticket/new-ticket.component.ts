@@ -11,10 +11,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css',
 })
 export class NewTicketComponent {
-  // @ViewChild('form') form ?: ElementRef<HTMLFormElement>
+  @ViewChild('form') form ?: ElementRef<HTMLFormElement>
   // private form = viewChild<ElementRef<HTMLFormElement>>('form')
-  private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
+  // private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
   
+  ngOnInit(){
+    console.log("INIT");
+    console.log(this.form?.nativeElement);
+    
+  }
+  ngAfterViewInit(): void {
+    console.log("After View Init");
+    console.log(this.form?.nativeElement);
+    
+  }
   onSubmit(
     // titleElement: HTMLInputElement,
     // textAreaElement: HTMLTextAreaElement
@@ -33,6 +43,6 @@ export class NewTicketComponent {
     // form.reset()
     // this.form?.nativeElement.reset()
     // this.form()?.nativeElement.reset()
-    this.form().nativeElement.reset()
+    this.form?.nativeElement.reset()
   }
 }
